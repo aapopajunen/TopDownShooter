@@ -4,7 +4,10 @@ import com.sun.javafx.geom.Vec2d;
 import com.sun.javafx.geom.Vec2f;
 import com.sun.javafx.geom.Vec3f;
 import math.Vector2;
+import org.lwjgl.assimp.AIMatrix4x4;
 import org.lwjgl.glfw.GLFW;
+
+import java.util.List;
 
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
@@ -14,6 +17,8 @@ public class TestState extends State{
     float bg = 0.2f;
 
     float col = 1.0f;
+
+
 
     Vector2 pos = new Vector2(0,0);
     Vector2 vel = new Vector2(0,0);
@@ -31,6 +36,9 @@ public class TestState extends State{
 
     @Override
     public void keyInput(int key, int action) {
+
+
+
         if(key == GLFW_KEY_W){
             if(action == GLFW_PRESS) wPressed = true;
             if(action == GLFW_RELEASE) wPressed = false;
@@ -54,15 +62,21 @@ public class TestState extends State{
 
     @Override
     public void update(double dt) {
+
+
+
+        vel = new Vector2(0,0);
+
         if(wPressed) vel.add(new Vector2(0, 1));
         if(sPressed) vel.add(new Vector2(0, -1));
         if(aPressed) vel.add(new Vector2(-1, 0));
         if(dPressed) vel.add(new Vector2(1,0));
 
+
         if(!wPressed && !sPressed && !aPressed && !dPressed)
             vel.scale(0.85);
         else
-            vel.normalize();
+            vel.normalize().scale(2);
 
         pos.add(vel.clone().scale(dt));
     }

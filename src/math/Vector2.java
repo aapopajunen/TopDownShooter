@@ -1,5 +1,7 @@
 package math;
 
+import com.sun.javafx.geom.Vec3f;
+
 public class Vector2 {
 
     public double x;
@@ -69,5 +71,8 @@ public class Vector2 {
     public String toString() {
         return this.x + ", " + this.y;
     }
+
+
+
 
 }

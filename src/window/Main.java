@@ -6,6 +6,7 @@ import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
 import org.lwjgl.system.*;
 
+import java.awt.geom.Ellipse2D;
 import java.nio.*;
 
 import static org.lwjgl.glfw.Callbacks.*;
@@ -20,8 +21,8 @@ public class Main {
     private long window;
     private StateManager sm;
 
-
     public void run() {
+
         System.out.println("Hello LWJGL " + Version.getVersion() + "!");
 
         init();
@@ -42,6 +43,8 @@ public class Main {
         // will print the error message in System.err.
         GLFWErrorCallback.createPrint(System.err).set();
 
+
+
         // Initialize GLFW. Most GLFW functions will not work before doing this.
         if ( !glfwInit() )
             throw new IllegalStateException("Unable to initialize GLFW");
@@ -60,7 +63,7 @@ public class Main {
         sm = new StateManager();
 
         // Setup a key callback. It will be called every time a key is pressed, repeated or released.
-        glfwSetKeyCallback(window, (window, key, scancode, action, mods) -> {
+               glfwSetKeyCallback(window, (window, key, scancode, action, mods) -> {
             if ( key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE )
                 glfwSetWindowShouldClose(window, true); // We will detect this in the rendering loop
 
@@ -96,8 +99,6 @@ public class Main {
         glfwShowWindow(window);
     }
 
-    double red = 0.0;
-
     private void loop() {
         // This line is critical for LWJGL's interoperation with GLFW's
         // OpenGL context, or any context that is managed externally.
@@ -115,6 +116,7 @@ public class Main {
         int frames = 0;
         double lastFPSPrint = glfwGetTime();
         double lastTime = glfwGetTime();
+
 
         while ( !glfwWindowShouldClose(window) ) {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
