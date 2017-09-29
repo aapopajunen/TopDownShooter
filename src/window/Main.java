@@ -70,6 +70,7 @@ public class Main {
             //pass input forward
             this.keyInput(key, action);
         });
+        
 
         // Get the thread stack and push a new frame
         try ( MemoryStack stack = stackPush() ) {

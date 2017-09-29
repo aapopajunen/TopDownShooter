@@ -1,6 +1,6 @@
 package entities;
 
-public class Player extends Entity {
+public class Player extends MobileEntity {
 
     public Player(double x,double y, double width, double height) {
         super(x,y,width,height);
