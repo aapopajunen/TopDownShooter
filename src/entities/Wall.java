@@ -22,10 +22,10 @@ public class Wall extends StaticEntity {
     public void render() {
         glColor3f(200,200,200);
         glRectd(
-                this.getX(),
-                this.getY(),
-                this.getX() + this.getWidth(),
-                this.getY() + this.getHeight());
+                this.x,
+                this.y,
+                this.x + this.width,
+                this.y + this.height);
 
     }
 
