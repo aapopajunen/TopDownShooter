@@ -6,18 +6,17 @@ import java.util.List;
 public class StateManager {
 
     public List<State> states;
-    public State testState;
     public State activeState;
 
-
     public StateManager() {
-        testState = new TestState(this);
         states = new ArrayList<State>();
-        states.add(testState);
-        activeState = testState;
+        State gs = new GameState(this);
+        this.addState(gs);
+        activeState = gs;
     }
-    public void keyInput(int key, int action){
-        activeState.keyInput(key, action);
+
+    public void addState(State s) {
+        states.add(s);
     }
 
     public void update(double dt) {

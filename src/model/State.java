@@ -4,7 +4,9 @@ public abstract class State {
 
     public StateManager sm;
 
-    public abstract  void keyInput(int key, int action);
+    public State(StateManager sm) {
+        this.sm = sm;
+    }
 
     public abstract void update(double dt);
 

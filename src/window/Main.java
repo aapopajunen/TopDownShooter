@@ -6,7 +6,6 @@ import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
 import org.lwjgl.system.*;
 
-import java.awt.geom.Ellipse2D;
 import java.nio.*;
 
 import static org.lwjgl.glfw.Callbacks.*;
@@ -59,16 +58,11 @@ public class Main {
         if ( window == NULL )
             throw new RuntimeException("Failed to create the GLFW window");
 
-        //create StateManager
-        sm = new StateManager();
 
         // Setup a key callback. It will be called every time a key is pressed, repeated or released.
                glfwSetKeyCallback(window, (window, key, scancode, action, mods) -> {
             if ( key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE )
                 glfwSetWindowShouldClose(window, true); // We will detect this in the rendering loop
-
-            //pass input forward
-            this.keyInput(key, action);
         });
         
 
@@ -96,9 +90,15 @@ public class Main {
         // Enable v-sync
         glfwSwapInterval(1);
 
+        get
+
+        //create StateManager
+        sm = new StateManager();
+
         // Make the window visible
         glfwShowWindow(window);
     }
+
 
     private void loop() {
         // This line is critical for LWJGL's interoperation with GLFW's
@@ -114,6 +114,8 @@ public class Main {
         // Run the rendering loop until the user has attempted to close
         // the window or has pressed the ESCAPE key.
 
+
+
         int frames = 0;
         double lastFPSPrint = glfwGetTime();
         double lastTime = glfwGetTime();
@@ -125,18 +127,18 @@ public class Main {
             double current = glfwGetTime();
             double dt = current - lastTime;
 
+            if(glfwGetKey(window,GLFW_KEY_UP) == GLFW_PRESS){
+                System.out.println("UP PRESSED BOIII!");
+            }
+
             update(dt);
             render();
 
             glfwSwapBuffers(window); // swap the color buffers
 
-
             // Poll for window events. The key callback above will only be
             // invoked during this call.
             glfwPollEvents();
-
-
-
 
             //print fps counter
             lastTime = current;
@@ -151,10 +153,6 @@ public class Main {
 
     public static void main(String[] args) {
         new Main().run();
-    }
-
-    void keyInput(int key, int action){
-        sm.keyInput(key, action);
     }
 
     void update(double dt) {
